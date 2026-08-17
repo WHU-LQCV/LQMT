@@ -25,6 +25,5 @@ gui_app_config.json
 Thumbs.db
 .DS_Store
 
-# Local notes
-*.bak
-*.bak_*
+# Local tooling
+.tools/
