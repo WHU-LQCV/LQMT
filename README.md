@@ -86,3 +86,5 @@ LQMT/
 ## 贡献与问题
 
 请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md)，并使用 Issue 模板提交：数值偏差/对齐、exe 使用问题、功能建议。
+
+首次把本仓库推到 GitHub 的操作说明见 [docs/github-publish-steps.md](docs/github-publish-steps.md)。
