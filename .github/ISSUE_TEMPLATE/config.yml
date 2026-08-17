@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 已知限制
+    url: https://github.com/WHU-LQCV/LQMT/blob/main/docs/known-limitations.md
+    about: 提交偏差前请先阅读 CCT、CDM_e、CQS 等已记录口径

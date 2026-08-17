@@ -1,0 +1,65 @@
+LQCV Lighting Quality Metrics Toolbox (LQMT)
+LQCV 光品质指标工具箱
+
+Copyright (C) 2026 LQCV Laboratory, Wuhan University
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, version 3 of the License only.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+The full license text is in the LICENSE file.
+
+-------------------------------------------------------------------------------
+Third-party software
+
+This project uses LuxPy (GPLv3) by Kevin A. G. Smet:
+  https://github.com/ksmet1977/luxpy
+  Smet, K. A. G. (2020). Tutorial: The LuxPy Python Toolbox for Lighting
+  and Color Science. LEUKOS. https://doi.org/10.1080/15502724.2018.1518717
+
+Because LQMT imports and redistributes LuxPy (including in the Windows
+executable), the combined work is licensed under GPL-3.0-only.
+
+Other runtime libraries (typical licenses; see each package for the
+authoritative text):
+
+  NumPy, pandas, SciPy, matplotlib, Pillow, openpyxl, shapely, resampy,
+  reportlab — BSD / MIT / Apache-style permissive licenses.
+
+-------------------------------------------------------------------------------
+Data files shipped with this repository
+
+metrics/Rd.csv
+  85 reflectance samples used by the Rd / CDM calculation path.
+  Interpolated to 380–780 nm at 5 nm from Esposito Rd.xlsm hidden sheet
+  RefData2 (original 360–750 nm / 10 nm; column order FM85, FM1, …, FM84).
+  Upstream chain cited in internal notes: X-Rite → Schmehling → Esposito.
+  This file is NOT an official X-Rite or Esposito product. Redistribution
+  of this table with LQMT is pending laboratory confirmation of rights.
+  If you are a rights holder and object, please open a GitHub Issue.
+
+metrics/Ob.csv
+  Observer-related auxiliary table used by selected metrics.
+
+metrics/GVI_samples.txt
+  GVI sample reflectances used by metrics/GVI.py.
+
+CIE colour-matching functions and illuminants are provided by LuxPy,
+not copied into this repository as independent copyrighted tables.
+
+-------------------------------------------------------------------------------
+Enterprise use (not legal advice)
+
+You may download the official executable, compute values, and align
+instruments to a tagged release.
+
+If you modify LQMT (or the bundled LuxPy-based program) and redistribute
+the modified executable or embed it in an instrument that you distribute,
+GPL-3.0 typically requires you to provide corresponding source under
+the same license. Internal use without redistribution is a different
+question; consult your own counsel.

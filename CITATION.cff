@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+title: "LQCV Lighting Quality Metrics Toolbox (LQMT)"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - name: "LQCV Laboratory"
+    affiliation: "Wuhan University"
+  - family-names: Wu
+    given-names: Xinwei
+    affiliation: "Wuhan University"
+repository-code: "https://github.com/WHU-LQCV/LQMT"
+license: GPL-3.0-only
+version: "1.0.0"
+date-released: "2026-08-18"
+abstract: >-
+  Academic reference implementation for computing spectral colour-quality
+  metrics (Ra, Rf, MCPI, CDM, MCPIr, CDMr, and related indices) from SPD data.
+  Not an official national-standard publication.
+keywords:
+  - lighting quality
+  - colour rendering
+  - SPD
+  - CIE
+  - GB/Z
