@@ -8,7 +8,7 @@ authors:
   - family-names: Wu
     given-names: Xinwei
     affiliation: "Wuhan University"
-repository-code: "https://github.com/WHU-LQCV/LQMT"
+repository-code: "https://gitee.com/WHU-LQCV/LQMT"
 license: GPL-3.0-only
 version: "1.0.0"
 date-released: "2026-08-18"

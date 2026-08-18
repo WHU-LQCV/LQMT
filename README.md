@@ -9,27 +9,30 @@
 > **不是**国家标准文本，**不是**标准化行政主管部门或标委会官方软件。与正式出版的 GB/Z / GB/T 文本冲突时，以正式出版物为准。  
 > 本工具**未经计量器具型式评价**。仪器厂对齐时应锁定本仓库 tag，并自行复测。
 
-当前公开版本：**v1.0.0**（GitHub Pre-release）  
-仓库：https://github.com/WHU-LQCV/LQMT  
+当前公开版本：**v1.0.0**（预发布）  
+**主仓（国内下载与 Issue）：** https://gitee.com/WHU-LQCV/LQMT  
+**镜像（国际可见）：** https://github.com/WHU-LQCV/LQMT  
 许可：[GPL-3.0-only](LICENSE)（因依赖 [LuxPy](https://github.com/ksmet1977/luxpy)，亦为 GPLv3）
+
+问题与建议请只在 **Gitee Issues** 提交，避免两处反馈分裂。
 
 ## 企业用户：下载可执行文件
 
-1. 打开 [Releases](https://github.com/WHU-LQCV/LQMT/releases)。
+1. 打开 Gitee [Releases](https://gitee.com/WHU-LQCV/LQMT/releases)。
 2. 下载 `LQCV-LQMT-v1.0.0-windows-x64.zip`。
 3. 解压后进入 `LQCV-LQMT` 文件夹，双击 `LQCV-LQMT.exe`。
 4. 可将 `lqcv_lqmt_config.json` 放在 exe 同级目录以保留配置。
 
 macOS / Linux 本轮不提供官方安装包，请从源码运行。
 
-对齐数值时请在报告中写明：**LQMT v1.0.0**（https://github.com/WHU-LQCV/LQMT）。
+对齐数值时请在报告中写明：**LQMT v1.0.0**（https://gitee.com/WHU-LQCV/LQMT）。
 
 ## 从源码运行
 
 需要 Python 3.9+（建议 3.10–3.12）。
 
 ```bash
-git clone https://github.com/WHU-LQCV/LQMT.git
+git clone https://gitee.com/WHU-LQCV/LQMT.git
 cd LQMT
 python -m venv .venv
 .venv\Scripts\activate
@@ -54,20 +57,20 @@ python run_gui.py
 
 源码与 Windows 可执行文件均按 **GPL-3.0-only** 发行。
 
-- **允许**：下载官方 exe 计算并对齐；阅读源码核对算法；通过 Issue 反馈偏差。
+- **允许**：下载官方 exe 计算并对齐；阅读源码核对算法；通过 Gitee Issue 反馈偏差。
 - **若修改后再对外发布**（改过的 exe，或把改动版嵌进仪器软件并分发）：通常须按 GPL 提供对应源码。详见 [NOTICE](NOTICE)。以上说明**不是律师意见**。
 
 请引用 LuxPy：Smet, K. A. G. (2020). Tutorial: The LuxPy Python Toolbox for Lighting and Color Science. *LEUKOS*.
 
 ## 引用本工具
 
-见 [CITATION.cff](CITATION.cff)。软件版本请使用 `1.0.0`。
+见 [CITATION.cff](CITATION.cff)。软件版本请使用 `1.0.0`。代码主地址请引用 Gitee。
 
 ## English
 
-LQMT is an **academic reference implementation** from the LQCV laboratory at Wuhan University. It computes spectral colour-quality metrics from SPD data. It is **not** the national standard text and **not** official software of any standards body. Conflict with a formally published GB/Z or GB/T document is resolved in favour of that publication.
+LQMT is an **academic reference implementation** from the LQCV laboratory at Wuhan University. **Canonical repository and issue tracker: [Gitee](https://gitee.com/WHU-LQCV/LQMT).** This GitHub copy is a read-only mirror for international access. Please file issues on Gitee.
 
-The Windows zip is the primary distribution for lighting manufacturers and instrument vendors. Source is provided so that algorithms can be inspected and issues filed.
+It computes spectral colour-quality metrics from SPD data. It is **not** the national standard text and **not** official software of any standards body.
 
 License: GPL-3.0-only (required by LuxPy GPLv3). See `NOTICE` for third-party credits and data-file provenance.
 
@@ -85,6 +88,4 @@ LQMT/
 
 ## 贡献与问题
 
-请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md)，并使用 Issue 模板提交：数值偏差/对齐、exe 使用问题、功能建议。
-
-首次把本仓库推到 GitHub 的操作说明见 [docs/github-publish-steps.md](docs/github-publish-steps.md)。
+请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。首次发布操作见 [docs/publish-steps.md](docs/publish-steps.md)。

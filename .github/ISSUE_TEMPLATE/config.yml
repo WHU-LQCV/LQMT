@@ -1,5 +1,8 @@
-blank_issues_enabled: true
+blank_issues_enabled: false
 contact_links:
+  - name: Gitee 主仓（请在这里提 Issue）
+    url: https://gitee.com/WHU-LQCV/LQMT/issues
+    about: 本 GitHub 仓库是镜像。国内下载与问题反馈请使用 Gitee。
   - name: 已知限制
-    url: https://github.com/WHU-LQCV/LQMT/blob/main/docs/known-limitations.md
+    url: https://gitee.com/WHU-LQCV/LQMT/blob/main/docs/known-limitations.md
     about: 提交偏差前请先阅读 CCT、CDM_e、CQS 等已记录口径

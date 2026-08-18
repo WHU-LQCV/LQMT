@@ -2,7 +2,7 @@
 
 ## 1.0.0 (2026-08-18)
 
-First public pre-release of **LQCV 光品质指标工具箱** (LQMT).
+First public pre-release of **LQCV 光品质指标工具箱** (LQMT). Canonical hosting is Gitee; GitHub is a mirror.
 
 This public version is based on the laboratory internal test package
 `dist_260727` (local development number 1.3.2). External alignment must
