@@ -32,7 +32,7 @@ tar -xf LQCV-LQMT-v1.0.0-windows-x64.zip
 4. 进入解压出的 `LQCV-LQMT` 文件夹，双击 `LQCV-LQMT.exe`。
 5. 可将 `lqcv_lqmt_config.json` 放在 exe 同级目录以保留配置。
 
-请勿只下载其中一个分卷，也无法直接解压 `.001` 文件。完整 zip 的 SHA256 写在发行说明中。
+请勿只下载其中一个分卷，也无法直接解压 `.001` 文件。
 
 macOS / Linux 本轮不提供官方安装包，请从源码运行。
 
