@@ -21,7 +21,7 @@ GitHub 仓库是镜像，请不要在 GitHub 提 Issue 或 PR（会被引导回 
 ## 代码贡献
 
 1. 先在 Gitee 开 Issue 说明动机，避免重复工作。
-2. 不要把内部测试数据、标准全文、招聘材料放进 Pull Request。
+2. 不要提交未授权数据、国家标准全文，或与本工具无关的材料。
 3. 计算方法变更必须在 `docs/known-limitations.md` 和 CHANGELOG 中写明。
 4. 本项目许可为 GPL-3.0-only；贡献视为在同一许可下提交。
 5. 请向 Gitee 主仓提交 PR；维护者再同步到 GitHub 镜像。

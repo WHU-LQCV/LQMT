@@ -38,10 +38,9 @@ metrics/Rd.csv
   85 reflectance samples used by the Rd / CDM calculation path.
   Interpolated to 380–780 nm at 5 nm from Esposito Rd.xlsm hidden sheet
   RefData2 (original 360–750 nm / 10 nm; column order FM85, FM1, …, FM84).
-  Upstream chain cited in internal notes: X-Rite → Schmehling → Esposito.
-  This file is NOT an official X-Rite or Esposito product. Redistribution
-  of this table with LQMT is pending laboratory confirmation of rights.
-  If you are a rights holder and object, please open a GitHub Issue.
+  Provenance commonly cited for this table: X-Rite → Schmehling → Esposito.
+  This file is NOT an official X-Rite or Esposito product.
+  If you are a rights holder and object, please open a Gitee Issue.
 
 metrics/Ob.csv
   Observer-related auxiliary table used by selected metrics.

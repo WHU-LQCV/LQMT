@@ -2,7 +2,7 @@
 
 ## 启动
 
-- Windows 发行包：从 Gitee Releases 下载并解压 `LQCV-LQMT-v1.0.0-windows-x64.zip`，进入 `LQCV-LQMT`，运行 `LQCV-LQMT.exe`。
+- Windows 发行包：从 Gitee Releases 下载全部 zip 分卷并合并（见仓库 README），进入 `LQCV-LQMT`，运行 `LQCV-LQMT.exe`。
 - 源码：安装 `requirements.txt` 后执行 `python run_gui.py`。
 
 窗口标题为「LQCV 光品质指标工具箱 v1.0.0」。配置文件默认名为 `lqcv_lqmt_config.json`，与 exe 或工作目录同级。

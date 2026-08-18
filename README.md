@@ -18,10 +18,21 @@
 
 ## 企业用户：下载可执行文件
 
-1. 打开 Gitee [Releases](https://gitee.com/WHU-LQCV/LQMT/releases)。
-2. 下载 `LQCV-LQMT-v1.0.0-windows-x64.zip`。
-3. 解压后进入 `LQCV-LQMT` 文件夹，双击 `LQCV-LQMT.exe`。
-4. 可将 `lqcv_lqmt_config.json` 放在 exe 同级目录以保留配置。
+Gitee 开源仓库单个发行附件上限约 100 MB，完整 Windows 包超过该限制，因此拆成若干分卷。请**全部下载**后再合并。
+
+1. 打开 Gitee [Releases](https://gitee.com/WHU-LQCV/LQMT/releases) 中的 **v1.0.0**。
+2. 下载全部 `LQCV-LQMT-v1.0.0-windows-x64.zip.00*` 分卷，以及 `合并解压.bat`（若发行页提供）。
+3. 放到同一文件夹。双击 `合并解压.bat`；或在该文件夹打开命令提示符执行：
+
+```bat
+copy /b LQCV-LQMT-v1.0.0-windows-x64.zip.001+LQCV-LQMT-v1.0.0-windows-x64.zip.002+LQCV-LQMT-v1.0.0-windows-x64.zip.003 LQCV-LQMT-v1.0.0-windows-x64.zip
+tar -xf LQCV-LQMT-v1.0.0-windows-x64.zip
+```
+
+4. 进入解压出的 `LQCV-LQMT` 文件夹，双击 `LQCV-LQMT.exe`。
+5. 可将 `lqcv_lqmt_config.json` 放在 exe 同级目录以保留配置。
+
+请勿只下载其中一个分卷，也无法直接解压 `.001` 文件。完整 zip 的 SHA256 写在发行说明中。
 
 macOS / Linux 本轮不提供官方安装包，请从源码运行。
 
@@ -51,7 +62,7 @@ python run_gui.py
 | CCT | Ohno 2014 / Robertson 2023（**与 GB/T 39394 不完全相同**，见已知限制） |
 | LuxPy | 锁定 `1.12.5` |
 
-完整说明见 [docs/known-limitations.md](docs/known-limitations.md)。验证方法概述：课题组用官方工具锚点、独立复算与回归测试维护口径；内部审计报告含未公开材料，不随本仓库发布。
+完整说明见 [docs/known-limitations.md](docs/known-limitations.md)。
 
 ## 许可证与二次分发
 
@@ -88,4 +99,4 @@ LQMT/
 
 ## 贡献与问题
 
-请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。首次发布操作见 [docs/publish-steps.md](docs/publish-steps.md)。
+请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
