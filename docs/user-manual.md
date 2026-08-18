@@ -23,5 +23,5 @@
 
 1. 记录 LQMT 版本 tag（例如 `v1.0.0`）和 LuxPy 1.12.5。
 2. 记录 SPD 波长范围与间隔。
-3. 阅读 [known-limitations.md](known-limitations.md)，尤其是 CCT 与 CDM_e。
+3. 阅读 [known-limitations.md](known-limitations.md)，尤其是 CCT 算法说明。
 4. 不要把本工具表述为「国标委官方软件」或「与国标逐字一致」。

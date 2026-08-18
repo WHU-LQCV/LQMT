@@ -59,7 +59,7 @@ python run_gui.py
 | Rf | CIE 224:2017 / IES TM-30（LuxPy `cierf`） |
 | Qa / CQS | LuxPy CQS `v9.0`（近似 9.0.3） |
 | Sneutral | CIE 1964 10° |
-| CCT | Ohno 2014 / Robertson 2023（**与 GB/T 39394 不完全相同**，见已知限制） |
+| CCT | Ohno 2014 / Robertson 2023（**不能代表 GB/T 39394**，见已知限制） |
 | LuxPy | 锁定 `1.12.5` |
 
 完整说明见 [docs/known-limitations.md](docs/known-limitations.md)。

@@ -5,4 +5,4 @@ contact_links:
     about: 本 GitHub 仓库是镜像。国内下载与问题反馈请使用 Gitee。
   - name: 已知限制
     url: https://gitee.com/WHU-LQCV/LQMT/blob/main/docs/known-limitations.md
-    about: 提交偏差前请先阅读 CCT、CDM_e、CQS 等已记录口径
+    about: 提交偏差前请先阅读 CCT、CQS 等已记录口径

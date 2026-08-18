@@ -12,4 +12,4 @@ LQCV 光品质指标工具箱（LQMT）首次公开预发布。主仓为 Gitee�
 - Sneutral 使用 CIE 1964 10°
 - LuxPy 锁定 1.12.5
 
-CCT 算法差异与未实现的 CDM_e 见 `docs/known-limitations.md`。
+CCT 使用 LuxPy 的 Ohno 2014 / Robertson 2023 路径，不能代表 GB/T 39394，见 `docs/known-limitations.md`。
