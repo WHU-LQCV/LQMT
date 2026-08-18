@@ -28,8 +28,9 @@ def sha256_file(path: Path) -> str:
     return h.hexdigest()
 
 
-def write_join_bat(dist_dir: Path, zip_name: str) -> list[Path]:
-    content = "\r\n".join(
+def write_join_helpers(dist_dir: Path, zip_name: str) -> None:
+    """Write merge helpers. Do not upload .bat to Gitee; its CDN rejects that type."""
+    bat = "\r\n".join(
         [
             "@echo off",
             "setlocal EnableDelayedExpansion",
@@ -66,12 +67,30 @@ def write_join_bat(dist_dir: Path, zip_name: str) -> list[Path]:
             "",
         ]
     )
-    paths = []
-    for name in ("join-and-extract.bat", "合并解压.bat"):
-        path = dist_dir / name
-        path.write_bytes(content.encode("ascii"))
-        paths.append(path)
-    return paths
+    bat_bytes = bat.encode("ascii")
+    (dist_dir / "join-and-extract.bat").write_bytes(bat_bytes)
+    (dist_dir / "合并解压.bat").write_bytes(bat_bytes)
+
+    note = (
+        "LQMT v1.0.0 Windows 分卷合并说明\r\n"
+        "\r\n"
+        "Gitee 无法在浏览器中直接下载 .bat。请只下载三个分卷：\r\n"
+        f"  {zip_name}.001\r\n"
+        f"  {zip_name}.002\r\n"
+        f"  {zip_name}.003\r\n"
+        "放到同一文件夹后，在该文件夹的地址栏输入 cmd 并回车，粘贴下面两行：\r\n"
+        "\r\n"
+        f"copy /b {zip_name}.001+{zip_name}.002+{zip_name}.003 {zip_name}\r\n"
+        f"tar -xf {zip_name}\r\n"
+        "\r\n"
+        "然后进入 LQCV-LQMT 文件夹，运行 LQCV-LQMT.exe。\r\n"
+        "不要下载 Source code 压缩包，那是源码不是安装包。\r\n"
+    )
+    (dist_dir / "合并说明.txt").write_bytes(b"\xef\xbb\xbf" + note.encode("utf-8"))
+
+    helper_zip = dist_dir / "join-and-extract.zip"
+    with zipfile.ZipFile(helper_zip, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+        zf.writestr("join-and-extract.bat", bat_bytes)
 
 
 def split_for_gitee(zip_path: Path) -> list[Path]:
@@ -92,7 +111,7 @@ def split_for_gitee(zip_path: Path) -> list[Path]:
             part_path.write_bytes(chunk)
             parts.append(part_path)
             index += 1
-    write_join_bat(dist_dir, zip_name)
+    write_join_helpers(dist_dir, zip_name)
     return parts
 
 
@@ -135,8 +154,9 @@ def main() -> None:
     print("Gitee attachments (each < 100 MB):")
     for part in parts:
         print(f"  {part.name}  {part.stat().st_size} bytes")
-    print("  join-and-extract.bat")
-    print("  合并解压.bat")
+    print("  合并说明.txt")
+    print("  join-and-extract.zip")
+    print("Do not upload .bat files to Gitee; the download CDN rejects them.")
     print("Keep the full zip locally; do not upload it to Gitee.")
 
 

@@ -21,8 +21,8 @@
 Gitee 开源仓库单个发行附件上限约 100 MB，完整 Windows 包超过该限制，因此拆成若干分卷。请**全部下载**后再合并。
 
 1. 打开 Gitee [Releases](https://gitee.com/WHU-LQCV/LQMT/releases) 中的 **v1.0.0**。
-2. 下载全部 `LQCV-LQMT-v1.0.0-windows-x64.zip.00*` 分卷，以及 `合并解压.bat`（若发行页提供）。
-3. 放到同一文件夹。双击 `合并解压.bat`；或在该文件夹打开命令提示符执行：
+2. 下载全部 `LQCV-LQMT-v1.0.0-windows-x64.zip.00*` 分卷（不要下 Source code，也不要下 `.bat`）。
+3. 放到同一文件夹。在资源管理器地址栏输入 `cmd` 回车，执行：
 
 ```bat
 copy /b LQCV-LQMT-v1.0.0-windows-x64.zip.001+LQCV-LQMT-v1.0.0-windows-x64.zip.002+LQCV-LQMT-v1.0.0-windows-x64.zip.003 LQCV-LQMT-v1.0.0-windows-x64.zip
