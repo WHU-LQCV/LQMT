@@ -4,7 +4,7 @@
 
 LQCV 光品质指标工具箱（LQMT）首次公开预发布。
 
-Windows 安装包在 GitCode Releases 提供完整 zip。源码同步 GitCode、Gitee、GitHub。问题反馈使用 Gitee Issues。
+Windows 安装包与问题反馈均在 GitCode。GitHub 为源码镜像。
 
 本版本计算口径：
 

@@ -40,7 +40,7 @@ metrics/Rd.csv
   RefData2 (original 360–750 nm / 10 nm; column order FM85, FM1, …, FM84).
   Provenance commonly cited for this table: X-Rite → Schmehling → Esposito.
   This file is NOT an official X-Rite or Esposito product.
-  If you are a rights holder and object, please open a Gitee Issue.
+  If you are a rights holder and object, please open a GitCode Issue.
 
 metrics/Ob.csv
   Observer-related auxiliary table used by selected metrics.

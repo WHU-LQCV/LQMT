@@ -4,7 +4,7 @@
 
 ## 如何反馈
 
-请使用 **Gitee Issues**：https://gitee.com/WHU-LQCV/LQMT/issues
+请使用 **GitCode Issues**：https://gitcode.com/WHU-LQCV/LQMT/issues
 
 请选择对应类型：
 
@@ -16,14 +16,14 @@
 
 请勿在 Issue 中上传未授权的企业光谱库或国家标准全文。
 
-GitHub 仓库是镜像，请不要在 GitHub 提 Issue 或 PR。
+GitHub 是源码镜像，请不要在 GitHub 提 Issue 或 PR。Gitee 仓库已停用。
 
 ## 代码贡献
 
-1. 先在 Gitee 开 Issue 说明动机，避免重复工作。
+1. 先在 GitCode 开 Issue 说明动机，避免重复工作。
 2. 不要提交未授权数据、国家标准全文，或与本工具无关的材料。
 3. 计算方法变更必须在 `docs/technical-notes.md` 和 CHANGELOG 中写明。
 4. 本项目许可为 GPL-3.0-only；贡献视为在同一许可下提交。
-5. 请向 Gitee 提交 PR；维护者再同步到 GitCode 与 GitHub。
+5. 请向 GitCode 提交 PR；维护者再同步到 GitHub。
 
 维护：武汉大学 LQCV 课题组。日常 Issues / Releases 由吴昕威处理；Organization Owner 为课题组负责人。

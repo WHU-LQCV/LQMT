@@ -935,7 +935,7 @@ LQCV Lighting Quality Metrics Toolbox (LQMT)
 技术：Python + Tkinter + LuxPy (GPLv3)
 许可：GPL-3.0-only
 安装包：https://gitcode.com/WHU-LQCV/LQMT/releases
-问题反馈：https://gitee.com/WHU-LQCV/LQMT/issues
+问题反馈：https://gitcode.com/WHU-LQCV/LQMT/issues
 
 © 2026 LQCV, Wuhan University
         """

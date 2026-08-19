@@ -10,8 +10,8 @@
 | | 地址 |
 |---|---|
 | **Windows 安装包** | [GitCode Releases](https://gitcode.com/WHU-LQCV/LQMT/releases) |
-| 源码 | [GitCode](https://gitcode.com/WHU-LQCV/LQMT) · [Gitee](https://gitee.com/WHU-LQCV/LQMT) · [GitHub](https://github.com/WHU-LQCV/LQMT) |
-| 问题反馈 | [Gitee Issues](https://gitee.com/WHU-LQCV/LQMT/issues) |
+| 源码 | [GitCode](https://gitcode.com/WHU-LQCV/LQMT) · [GitHub](https://github.com/WHU-LQCV/LQMT)（镜像） |
+| 问题反馈 | [GitCode Issues](https://gitcode.com/WHU-LQCV/LQMT/issues) |
 
 ## 企业用户：下载可执行文件
 
@@ -55,7 +55,7 @@ python run_gui.py
 
 源码与 Windows 可执行文件均按 **GPL-3.0-only** 发行。
 
-- **允许**：下载官方 exe 计算并对齐；阅读源码核对算法；通过 Gitee Issue 反馈。
+- **允许**：下载官方 exe 计算并对齐；阅读源码核对算法；通过 GitCode Issue 反馈。
 - **若修改后再对外发布**（改过的 exe，或把改动版嵌进仪器软件并分发）：通常须按 GPL 提供对应源码。详见 [NOTICE](NOTICE)。
 
 请引用 LuxPy：Smet, K. A. G. (2020). Tutorial: The LuxPy Python Toolbox for Lighting and Color Science. *LEUKOS*.
@@ -66,7 +66,7 @@ python run_gui.py
 
 ## English
 
-LQMT computes spectral colour-quality metrics from SPD data. **Windows package:** [GitCode Releases](https://gitcode.com/WHU-LQCV/LQMT/releases). **Issues:** [Gitee](https://gitee.com/WHU-LQCV/LQMT/issues). GitHub is a mirror.
+LQMT computes spectral colour-quality metrics from SPD data. **Windows package and issues:** [GitCode](https://gitcode.com/WHU-LQCV/LQMT). GitHub is a source mirror.
 
 License: GPL-3.0-only (required by LuxPy GPLv3). See `NOTICE` for third-party credits.
 
