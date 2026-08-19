@@ -28,4 +28,4 @@ labels: alignment
 
 ## 其他
 
-已阅读 `docs/known-limitations.md` 中的 CCT / CQS 说明：是 / 否
+对齐说明（可选）：已对照 `docs/technical-notes.md`：是 / 否

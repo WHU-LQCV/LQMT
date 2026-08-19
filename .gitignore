@@ -27,3 +27,6 @@ Thumbs.db
 
 # Local tooling
 .tools/
+
+gitcode_mcp.log
+

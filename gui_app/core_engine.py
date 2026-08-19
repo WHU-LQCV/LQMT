@@ -25,7 +25,7 @@ from spd_utils import pad_spd_to_range
 
 # Sneutral 使用 Smet 模型原生的 CIE 1964 10° xyz10 口径。
 _CMF_SNEUTRAL = '1964_10'
-# MCPI 原论文实际计算使用 CQS 9.0.3；LuxPy 当前以 v9.0 近似该口径。
+# MCPI 原论文实际计算使用 CQS 9.0.3；本版本 LuxPy version='v9.0'（1.12.5）。
 _CQS_VERSION = 'v9.0'
 
 

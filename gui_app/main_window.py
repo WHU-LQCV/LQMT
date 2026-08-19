@@ -929,13 +929,13 @@ LQCV 光品质指标工具箱使用说明
 LQCV 光品质指标工具箱 v1.0.0
 LQCV Lighting Quality Metrics Toolbox (LQMT)
 
-武汉大学 LQCV 课题组学术参考实现。
+武汉大学 LQCV 课题组
 用于从 SPD 计算光源光谱颜色质量指标。
-不是国家标准文本，也不是标委会官方软件。
 
 技术：Python + Tkinter + LuxPy (GPLv3)
 许可：GPL-3.0-only
-主仓：https://gitee.com/WHU-LQCV/LQMT
+安装包：https://gitcode.com/WHU-LQCV/LQMT/releases
+问题反馈：https://gitee.com/WHU-LQCV/LQMT/issues
 
 © 2026 LQCV, Wuhan University
         """

@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Gitee 主仓（请在这里提 Issue）
+  - name: Gitee 反馈（请在这里提 Issue）
     url: https://gitee.com/WHU-LQCV/LQMT/issues
-    about: 本 GitHub 仓库是镜像。国内下载与问题反馈请使用 Gitee。
-  - name: 已知限制
-    url: https://gitee.com/WHU-LQCV/LQMT/blob/main/docs/known-limitations.md
-    about: 提交偏差前请先阅读 CCT、CQS 等已记录口径
+    about: 本 GitHub 仓库是镜像。Windows 安装包请从 GitCode Releases 下载。
+  - name: GitCode 安装包
+    url: https://gitcode.com/WHU-LQCV/LQMT/releases
+    about: 下载完整 Windows zip，解压后运行 LQCV-LQMT.exe
