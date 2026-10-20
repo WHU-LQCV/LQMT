@@ -86,7 +86,7 @@ class ThreadSafeTask:
 
 # 界面字体是微软雅黑，没有 Unicode 下标字形。只有这两个新指标用下划线表示下标。
 METRIC_DISPLAY_NAMES = {
-    'pe': 'p_e',
+    'pe': 'p_e (D65)',
     'hab': 'h_ab',
 }
 

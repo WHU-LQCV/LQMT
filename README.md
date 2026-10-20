@@ -4,7 +4,7 @@
 
 从光源光谱功率分布（SPD）计算颜色质量指标：Ra、Rf、MCPI、CDM、MCPIr、CDMr、激发纯度 pe、CIELAB 色调角 hab 及分级等。
 
-当前版本：**v1.0.1**（源码与测试包）。GitCode Releases 上的正式安装包仍是 v1.0.0，不含 p_e、h_ab。测试通过后再发布。
+当前版本：**v1.0.1**。Windows 安装包在 GitCode Releases。
 许可：[GPL-3.0-only](LICENSE)
 
 | | 地址 |
@@ -15,15 +15,15 @@
 
 ## 企业用户：下载可执行文件
 
-1. 打开 GitCode [Releases](https://gitcode.com/WHU-LQCV/LQMT/releases) 中的 **v1.0.0**。
-2. 下载 `LQCV-LQMT-v1.0.0-windows-x64.zip`（一个文件即可；不要下 Source code）。
+1. 打开 GitCode [Releases](https://gitcode.com/WHU-LQCV/LQMT/releases) 中的 **v1.0.1**。
+2. 下载 `LQCV-LQMT-v1.0.1-windows-x64.zip`（一个文件即可；不要下 Source code）。
 3. 解压后进入 `LQCV-LQMT` 文件夹，双击 `LQCV-LQMT.exe`。
 
 可将 `lqcv_lqmt_config.json` 放在 exe 同级目录以保留配置。
 
 macOS / Linux 请从源码运行。
 
-对齐数值时请写明所用版本：测试包 **LQMT v1.0.1**，或已发布安装包 **LQMT v1.0.0**。
+对齐数值时请写明 **LQMT v1.0.1**。
 
 ## 从源码运行
 
@@ -47,7 +47,7 @@ python run_gui.py
 | Qa / CQS | LuxPy CQS `v9.0`（LuxPy 1.12.5） |
 | Sneutral | CIE 1964 10° |
 | CCT | Ohno 2014 / Robertson 2023 |
-| p_e | 激发纯度。等能白 E 为无彩色点，观察者随界面 CMF。单位为 1 |
+| p_e | 激发纯度。无彩色点为同一观察者下的 CIE D65。界面和导出写作 `p_e (D65)`。单位为 1 |
 | h_ab | 光源 Y=100 的 XYZ 相对同一观察者、同一波长网格上 D65 的 CIE 1976 色调角，单位为度 |
 | LuxPy | 锁定 `1.12.5` |
 

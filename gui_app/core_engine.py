@@ -13,7 +13,7 @@ CMF（色匹配函数）策略:
 全局 cieobs 参数仅作用于辅助色度列（x, y, u', v', pe, hab），
 核心指标均已按上述规则固定，不受 UI CMF 切换影响。
 
-pe：激发纯度。指定无彩色刺激为等能白 E（XYZ = 100, 100, 100）。
+pe：激发纯度。指定无彩色刺激为同一观察者下的全波段 CIE D65。
 hab：把光源相对三刺激值（Y = 100）相对同一观察者的 D65 硬算 CIELAB，再取 a*b* 色调角。
 """
 
@@ -30,18 +30,25 @@ from spd_utils import pad_spd_to_range
 _CMF_SNEUTRAL = '1964_10'
 # MCPI 原论文实际计算使用 CQS 9.0.3；本版本 LuxPy version='v9.0'（1.12.5）。
 _CQS_VERSION = 'v9.0'
-# 等能白 E。激发纯度的指定无彩色刺激；也是 LuxPy xyz_to_Ydlep 的默认白点。
-_XYZ_ILLUMINANT_E = np.array([[100.0, 100.0, 100.0]])
+def d65_white_xyz(cieobs='1931_2'):
+    """同一观察者下全波段 CIE D65 的相对三刺激值。
 
-
-def excitation_purity(xyz, cieobs='1931_2'):
-    """激发纯度 pe，IEC 60050-845 的 NC/ND。
-
-    N 为等能白 E，D 为 N 与样品色品的连线同光谱轨迹的交点；
-    紫色刺激时 D 落在紫边界上。返回值无量纲，范围通常在 0 到 1。
+    激发纯度的无彩色点用这个色品。它不随样品波长范围改变。
     """
+    return lx.spd_to_xyz(lx._CIE_D65, relative=True, cieobs=cieobs)
+
+
+def excitation_purity(xyz, cieobs='1931_2', xyzw=None):
+    """激发纯度 pe，CIE S 017 17-23-066 的 NC/ND。
+
+    N 为同一观察者下的 CIE D65。D 为 N 与样品色品的连线同光谱轨迹的交点；
+    紫色刺激时 D 落在紫边界上。返回值无量纲，范围通常在 0 到 1。
+    样品色品与该 D65 重合时纯度为 0。
+    """
+    if xyzw is None:
+        xyzw = d65_white_xyz(cieobs)
     ydlep = np.asarray(
-        lx.xyz_to_Ydlep(xyz, cieobs=cieobs, xyzw=_XYZ_ILLUMINANT_E),
+        lx.xyz_to_Ydlep(xyz, cieobs=cieobs, xyzw=xyzw),
         dtype=float,
     )
     return ydlep[..., 2]
@@ -67,7 +74,7 @@ def source_cielab_hue_d65(xyz, cieobs='1931_2', xyzw=None):
     a* 与 b* 同时接近 0 时色调角无定义，返回 NaN。
     """
     if xyzw is None:
-        xyzw = lx.spd_to_xyz(lx._CIE_D65, relative=True, cieobs=cieobs)
+        xyzw = d65_white_xyz(cieobs)
     lab = np.asarray(lx.xyz_to_lab(xyz, xyzw=xyzw, cieobs=cieobs), dtype=float)
     a_star = lab[..., 1]
     b_star = lab[..., 2]

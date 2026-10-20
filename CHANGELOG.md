@@ -4,12 +4,12 @@
 
 基础色度列增加两项，观察者都跟随界面里的 CMF：
 
-- p_e：激发纯度。无彩色点为等能白 E，紫色刺激取紫边界。单位为 1
+- p_e：激发纯度。无彩色点为同一观察者下的 CIE D65，紫色刺激取紫边界。单位为 1。测试初期曾用等能白 E，已改为 D65。结果页、配置页、表头和导出列名标明为 `p_e (D65)`
 - h_ab：光源 Y=100 的 XYZ 相对同一观察者 D65 的 CIE 1976 a*b* 色调角，单位为度。落在 D65 上时无定义
 
 界面字体没有 Unicode 下标，只有 p_e 和 h_ab 用下划线表示下标，其余指标名称保持原样。
 
-本版供测试，尚未发布到 GitCode Releases。已发布的 Windows 安装包仍是 v1.0.0，不含这两项。
+Windows 安装包：`LQCV-LQMT-v1.0.1-windows-x64.zip`，发布在 GitCode Releases，GitHub 同步一份。
 
 打包只生成一个 zip，不再为 Gitee 分卷。修复 SciPy 1.18 在冻结程序里缺少 `array_api_compat.numpy.fft` 导致 exe 无法启动的问题。
 

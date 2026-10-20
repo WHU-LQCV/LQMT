@@ -252,6 +252,11 @@ class MainWindow:
         
         self.summary_label = ttk.Label(summary_frame, text="尚无计算结果", font=("Microsoft YaHei UI", 10))
         self.summary_label.pack(fill=tk.X)
+        ttk.Label(
+            summary_frame,
+            text="p_e 的无彩色点为当前观察者下的 CIE D65。",
+            font=("Microsoft YaHei UI", 10),
+        ).pack(anchor=tk.W, pady=(6, 0))
         
         # 操作按钮（底部，先pack以确保始终可见）
         action_frame = ttk.Frame(self.result_frame)
@@ -324,7 +329,7 @@ class MainWindow:
 
         cmf_desc = ttk.Label(
             cmf_frame,
-            text="仅用于结果表中的色度列（x, y, u\u2019, v\u2019, p_e, h_ab）。\nRa/Rf/Qa/CDI/Rd/Sneutral/MCPI/CDM 等指标\n按各自标准固定观察者计算，不受此选项影响。",
+            text="仅用于结果表中的色度列（x, y, u\u2019, v\u2019, p_e, h_ab）。\np_e 的无彩色点为当前观察者下的 CIE D65。\nRa/Rf/Qa/CDI/Rd/Sneutral/MCPI/CDM 等指标\n按各自标准固定观察者计算，不受此选项影响。",
             justify=tk.LEFT,
             foreground='gray'
         )
@@ -914,8 +919,8 @@ LQCV 光品质指标工具箱使用说明
 【计算指标】
 • 分级指标：还原分级、喜好分级、分辨分级（A/B/C/D）
 • 核心指标：Ra, Rf, (Ra+Rf)/2, MCPI, CDM, MCPIr, CDMr
-• 基础指标：CCT, Duv, x, y, u', v', p_e, h_ab
-  - p_e：激发纯度，无彩色点为等能白 E，无量纲
+• 基础指标：CCT, Duv, x, y, u', v', p_e (D65), h_ab
+  - p_e：激发纯度，无彩色点为当前观察者下的 CIE D65，无量纲。结果表、指标勾选和导出列名写作 p_e (D65)
   - h_ab：光源色品相对 D65 的 CIELAB 色调角，单位度
 • 其他指标：Rg, CRI2012, CQS系列, MCRI, FCI, Sneutral, GAI, 
   CDI76, GAI-CRI, Rd, CS, CLa等
