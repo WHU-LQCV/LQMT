@@ -15,9 +15,9 @@
 
 ## 输出
 
-结果表包含 CCT、D_uv、色度坐标、激发纯度 p_e、CIELAB 色调角 h_ab、R_a、R_f、MCPI、CDM、MCPI_r、CDM_r、A/B/C/D 分级，以及其他可选指标（R_g、CQS、GAI、R_d 等）。列名用下划线表示下标。可导出 Excel / CSV，并打开可视化窗口。
+结果表包含 CCT、Duv、色度坐标、激发纯度 p_e、CIELAB 色调角 h_ab、Ra、Rf、MCPI、CDM、MCPIr、CDMr、A/B/C/D 分级，以及其他可选指标（Rg、CQS、GAI、Rd 等）。可导出 Excel / CSV，并打开可视化窗口。
 
-界面中的 CMF 选项改变 x、y、u′、v′、p_e、h_ab。R_a、R_f、MCPI 等核心指标按各自标准固定观察者。
+界面中的 CMF 选项改变 x、y、u′、v′、p_e、h_ab。Ra、Rf、MCPI 等核心指标按各自标准固定观察者。
 
 p_e 是激发纯度，无量纲。无彩色点固定为等能白 E，不随 CMF 选项改成 D65。紫色刺激的分母端点取紫边界，不取光谱轨迹。
 

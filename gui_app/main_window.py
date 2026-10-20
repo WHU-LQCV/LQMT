@@ -324,7 +324,7 @@ class MainWindow:
 
         cmf_desc = ttk.Label(
             cmf_frame,
-            text="仅用于结果表中的色度列（x, y, u\u2019, v\u2019, p_e, h_ab）。\nR_a/R_f/Q_a/CDI/R_d/Sneutral/MCPI/CDM 等指标\n按各自标准固定观察者计算，不受此选项影响。",
+            text="仅用于结果表中的色度列（x, y, u\u2019, v\u2019, p_e, h_ab）。\nRa/Rf/Qa/CDI/Rd/Sneutral/MCPI/CDM 等指标\n按各自标准固定观察者计算，不受此选项影响。",
             justify=tk.LEFT,
             foreground='gray'
         )
@@ -913,16 +913,16 @@ LQCV 光品质指标工具箱使用说明
 
 【计算指标】
 • 分级指标：还原分级、喜好分级、分辨分级（A/B/C/D）
-• 核心指标：R_a, R_f, (R_a+R_f)/2, MCPI, CDM, MCPI_r, CDM_r
-• 基础指标：CCT, D_uv, x, y, u', v', p_e, h_ab
+• 核心指标：Ra, Rf, (Ra+Rf)/2, MCPI, CDM, MCPIr, CDMr
+• 基础指标：CCT, Duv, x, y, u', v', p_e, h_ab
   - p_e：激发纯度，无彩色点为等能白 E，无量纲
   - h_ab：光源色品相对 D65 的 CIELAB 色调角，单位度
 • 其他指标：Rg, CRI2012, CQS系列, MCRI, FCI, Sneutral, GAI, 
-  CDI76, GAI-CRI, R_d, CS, CL_a等
+  CDI76, GAI-CRI, Rd, CS, CLa等
 
 【配置选项】
 • CMF选择：支持CIE 1931 2°和CIE 1964 10°标准观察者
-  - 仅影响结果表中的 x, y, u′, v′, p_e, h_ab；R_a/R_f/MCPI 等核心指标按各自标准固定观察者
+  - 仅影响结果表中的 x, y, u′, v′, p_e, h_ab；Ra/Rf/MCPI 等核心指标按各自标准固定观察者
 • 指标选择：可勾选需要计算和显示的指标
 • 配置保存：设置会自动保存，下次启动自动恢复
 

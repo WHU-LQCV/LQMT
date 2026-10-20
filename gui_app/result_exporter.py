@@ -126,9 +126,9 @@ class ResultExporter:
                 ('CCT范围', f"{results_df['CCT'].min()}K - {results_df['CCT'].max()}K"),
             ])
         if 'Ra (CIE 13.3-1995 Ra)' in results_df.columns:
-            summary_rows.append(('平均 R_a', round(results_df['Ra (CIE 13.3-1995 Ra)'].mean(), 1)))
+            summary_rows.append(('平均Ra', round(results_df['Ra (CIE 13.3-1995 Ra)'].mean(), 1)))
         if 'Rf (CIE 224-2017 Rf / IES TM 30-18 Rf)' in results_df.columns:
-            summary_rows.append(('平均 R_f', round(results_df['Rf (CIE 224-2017 Rf / IES TM 30-18 Rf)'].mean(), 1)))
+            summary_rows.append(('平均Rf', round(results_df['Rf (CIE 224-2017 Rf / IES TM 30-18 Rf)'].mean(), 1)))
 
         grade_cols = ['还原分级', '喜好分级', '分辨分级']
         if all(col in results_df.columns for col in grade_cols):

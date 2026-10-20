@@ -84,26 +84,10 @@ class ThreadSafeTask:
             self.thread.join(timeout)
 
 
-# 界面字体是微软雅黑，没有 Unicode 下标字形。带下标的指标用下划线表示。
+# 界面字体是微软雅黑，没有 Unicode 下标字形。只有这两个新指标用下划线表示下标。
 METRIC_DISPLAY_NAMES = {
-    'Ra': 'R_a',
-    'Rf': 'R_f',
-    'Rg': 'R_g',
-    'Rd': 'R_d',
-    '(Ra+Rf)/2': '(R_a+R_f)/2',
-    'Duv': 'D_uv',
     'pe': 'p_e',
     'hab': 'h_ab',
-    'CQS Qa': 'CQS Q_a',
-    'CQS Qf': 'CQS Q_f',
-    'CQS Qg': 'CQS Q_g',
-    'CQS Qp': 'CQS Q_p',
-    'MCPIr': 'MCPI_r',
-    'CDMr': 'CDM_r',
-    'CLa': 'CL_a',
-    'Ra (CIE 13.3-1995 Ra)': 'R_a (CIE 13.3-1995 R_a)',
-    'Rf (CIE 224-2017 Rf / IES TM 30-18 Rf)': 'R_f (CIE 224-2017 R_f / IES TM-30 R_f)',
-    'Rg (IES TM30-18 Rg)': 'R_g (IES TM-30-18 R_g)',
 }
 
 
