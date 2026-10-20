@@ -15,7 +15,7 @@ from pathlib import Path
 
 
 APP_NAME = "LQCV-LQMT"
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 # Stay under Gitee's ~100 MB attachment cap (decimal or binary).
 PART_SIZE = 90 * 1024 * 1024
 
@@ -72,7 +72,7 @@ def write_join_helpers(dist_dir: Path, zip_name: str) -> None:
     (dist_dir / "合并解压.bat").write_bytes(bat_bytes)
 
     note = (
-        "LQMT v1.0.0 Windows 分卷合并说明\r\n"
+        f"LQMT v{VERSION} Windows 分卷合并说明\r\n"
         "\r\n"
         "Gitee 无法在浏览器中直接下载 .bat。请只下载三个分卷：\r\n"
         f"  {zip_name}.001\r\n"

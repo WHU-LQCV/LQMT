@@ -8,10 +8,13 @@ CMF（色匹配函数）策略:
   CDI       → CIE 1931 2° + CIE 1976 u'v'（CDI76）
   Rd        → CIE 1964 10° (Rd.py 内部固定)
   Sneutral  → CIE 1964 10° (Smet 模型 xyz10 口径，固定不随全局 cieobs 变化)
-  x,y,u',v' → 由 cieobs 参数决定（辅助色度列，默认 1931_2）
+  x,y,u',v',pe,hab → 由 cieobs 参数决定（辅助色度列，默认 1931_2）
 
-全局 cieobs 参数仅作用于辅助色度列（x,y,u',v'），
+全局 cieobs 参数仅作用于辅助色度列（x, y, u', v', pe, hab），
 核心指标均已按上述规则固定，不受 UI CMF 切换影响。
+
+pe：激发纯度。指定无彩色刺激为等能白 E（XYZ = 100, 100, 100）。
+hab：把光源相对三刺激值（Y = 100）相对同一观察者的 D65 硬算 CIELAB，再取 a*b* 色调角。
 """
 
 import luxpy as lx
@@ -27,6 +30,53 @@ from spd_utils import pad_spd_to_range
 _CMF_SNEUTRAL = '1964_10'
 # MCPI 原论文实际计算使用 CQS 9.0.3；本版本 LuxPy version='v9.0'（1.12.5）。
 _CQS_VERSION = 'v9.0'
+# 等能白 E。激发纯度的指定无彩色刺激；也是 LuxPy xyz_to_Ydlep 的默认白点。
+_XYZ_ILLUMINANT_E = np.array([[100.0, 100.0, 100.0]])
+
+
+def excitation_purity(xyz, cieobs='1931_2'):
+    """激发纯度 pe，IEC 60050-845 的 NC/ND。
+
+    N 为等能白 E，D 为 N 与样品色品的连线同光谱轨迹的交点；
+    紫色刺激时 D 落在紫边界上。返回值无量纲，范围通常在 0 到 1。
+    """
+    ydlep = np.asarray(
+        lx.xyz_to_Ydlep(xyz, cieobs=cieobs, xyzw=_XYZ_ILLUMINANT_E),
+        dtype=float,
+    )
+    return ydlep[..., 2]
+
+
+def d65_white_on_spd_grid(spd, cieobs='1931_2'):
+    """把 CIE D65 插到与样品相同的波长网格上，再求相对三刺激值。
+
+    工具箱会把样品补齐到 380–780 nm。参考白使用同一网格，
+    避免全波段 D65（360–830 nm）与截断光谱之间留下无意义的色调角。
+    """
+    d65 = lx._CIE_D65
+    values = np.interp(spd[0], d65[0], d65[1], left=0.0, right=0.0)
+    d65_spd = np.vstack([spd[0], values])
+    return lx.spd_to_xyz(d65_spd, relative=True, cieobs=cieobs)
+
+
+def source_cielab_hue_d65(xyz, cieobs='1931_2', xyzw=None):
+    """光源相对 D65 的 CIE 1976 hab，单位为度，范围 [0, 360)。
+
+    xyz 须是 relative=True 的光源三刺激值。xyzw 缺省时使用同一观察者下的
+    全波段 CIE D65；批量计算会传入与样品同一波长网格的 D65。
+    a* 与 b* 同时接近 0 时色调角无定义，返回 NaN。
+    """
+    if xyzw is None:
+        xyzw = lx.spd_to_xyz(lx._CIE_D65, relative=True, cieobs=cieobs)
+    lab = np.asarray(lx.xyz_to_lab(xyz, xyzw=xyzw, cieobs=cieobs), dtype=float)
+    a_star = lab[..., 1]
+    b_star = lab[..., 2]
+    hue = np.asarray(
+        lx.math.positive_arctan(a_star, b_star, htype='deg'),
+        dtype=float,
+    )
+    hue[np.hypot(a_star, b_star) < 1e-8] = np.nan
+    return hue
 
 
 class MetricsCalculator:
@@ -35,7 +85,7 @@ class MetricsCalculator:
     def __init__(self):
         """初始化计算器"""
         self.metrics_columns = [
-            'ID', 'CCT', 'Duv', 'x', 'y', "u'", "v'",
+            'ID', 'CCT', 'Duv', 'x', 'y', "u'", "v'", 'pe', 'hab',
             'Ra (CIE 13.3-1995 Ra)',
             'Rf (CIE 224-2017 Rf / IES TM 30-18 Rf)',
             'Rg (IES TM30-18 Rg)',
@@ -94,8 +144,11 @@ class MetricsCalculator:
             is_selected('MCPIr') or is_selected('CDMr') or need_discrimination_grade or
             need_preference_grade
         )
+        need_pe = is_selected('pe')
+        need_hab = is_selected('hab')
         need_xyz = (
             is_selected('x') or is_selected('y') or is_selected("u'") or is_selected("v'") or
+            need_pe or need_hab or
             is_selected('Sneutral') or is_selected('CDM') or is_selected('CDMr') or
             need_discrimination_grade
         )
@@ -148,6 +201,19 @@ class MetricsCalculator:
             xyz = lx.spd_to_xyz(spd, relative=True, cieobs=cieobs)
             if need_uv:
                 uvDash = lx.xyz_to_Yuv(xyz)
+
+        pe_values = None
+        hab_values = None
+        if xyz is not None and (need_pe or need_hab):
+            update_progress(0, "计算激发纯度与色调角...")
+            if need_pe:
+                pe_values = np.asarray(excitation_purity(xyz, cieobs), dtype=float).reshape(-1)
+            if need_hab:
+                xyzw_d65 = d65_white_on_spd_grid(spd, cieobs)
+                hab_values = np.asarray(
+                    source_cielab_hue_d65(xyz, cieobs, xyzw=xyzw_d65),
+                    dtype=float,
+                ).reshape(-1)
 
         if need_ra:
             update_progress(0, "计算Ra指标...")
@@ -224,6 +290,10 @@ class MetricsCalculator:
             if uvDash is not None:
                 add_metric("u'", uvDash[i][1])
                 add_metric("v'", uvDash[i][2])
+            if pe_values is not None:
+                add_metric('pe', float(pe_values[i]))
+            if hab_values is not None:
+                add_metric('hab', float(hab_values[i]))
             if ciera is not None:
                 add_metric('Ra (CIE 13.3-1995 Ra)', ra_value)
             if cierf is not None:
@@ -330,7 +400,7 @@ class MetricsCalculator:
         result_df = DataFrame(metrics)
         
         if progress_callback:
-            progress_callback(CCT.size, CCT.size, "计算完成！")
+            progress_callback(sample_count, sample_count, "计算完成！")
         
         return result_df
     

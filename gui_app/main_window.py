@@ -268,7 +268,7 @@ class MainWindow:
         # 创建Treeview表格 - 按新顺序显示所有指标
         self.result_columns = ['ID', '还原分级', '喜好分级', '分辨分级',
                   'Ra', 'Rf', '(Ra+Rf)/2', 'MCPI', 'CDM', 'MCPIr', 'CDMr',
-                  'CCT', 'Duv', 'x', 'y', "u'", "v'", 
+                  'CCT', 'Duv', 'x', 'y', "u'", "v'", 'pe', 'hab', 
                   'Rg', 'CRI2012', 
                   'CQS Qa', 'CQS Qf', 'CQS Qg', 'CQS Qp',
                   'MCRI', 'FCI', 'Sneutral', 'GAI', 'CDI76', 'GAI-CRI',
@@ -282,6 +282,7 @@ class MainWindow:
             'Ra': 55, 'Rf': 55, '(Ra+Rf)/2': 75, 'MCPI': 60, 'CDM': 60,
             'MCPIr': 65, 'CDMr': 65,
             'CCT': 60, 'Duv': 65, 'x': 60, 'y': 60, "u'": 60, "v'": 60,
+            'pe': 60, 'hab': 70,
             'Rg': 55, 'CRI2012': 65,
             'CQS Qa': 65, 'CQS Qf': 65, 'CQS Qg': 65, 'CQS Qp': 65,
             'MCRI': 55, 'FCI': 55, 'Sneutral': 70, 'GAI': 55, 'CDI76': 65, 'GAI-CRI': 70,
@@ -312,7 +313,7 @@ class MainWindow:
     def _create_config_panel(self):
         """创建配置面板"""
         # 色度坐标显示观察者选择（顶部）
-        cmf_frame = ttk.LabelFrame(self.config_frame, text="色度坐标显示观察者（x, y, u\u2019, v\u2019）", padding="10")
+        cmf_frame = ttk.LabelFrame(self.config_frame, text="色度坐标显示观察者（x, y, u\u2019, v\u2019, pe, hab）", padding="10")
         cmf_frame.pack(fill=tk.X, padx=5, pady=5)
         
         self.cmf_var = tk.StringVar(value=self.config.get('cmf', '1931_2'))
@@ -323,7 +324,7 @@ class MainWindow:
 
         cmf_desc = ttk.Label(
             cmf_frame,
-            text="仅用于结果表中色度坐标列（x, y, u\u2019, v\u2019）的显示口径。\nRa/Rf/Qa/CDI/Rd/Sneutral/MCPI/CDM 等所有指标\n按各自标准固定观察者计算，不受此选项影响。",
+            text="仅用于结果表中的色度列（x, y, u\u2019, v\u2019, pe, hab）。\nRa/Rf/Qa/CDI/Rd/Sneutral/MCPI/CDM 等指标\n按各自标准固定观察者计算，不受此选项影响。",
             justify=tk.LEFT,
             foreground='gray'
         )
@@ -384,7 +385,7 @@ class MainWindow:
         self.available_metrics = {
             '分级': ['还原分级', '喜好分级', '分辨分级'],
             '核心指标': ['Ra', 'Rf', '(Ra+Rf)/2', 'MCPI', 'CDM', 'MCPIr', 'CDMr'],
-            '基础指标': ['CCT', 'Duv', 'x', 'y', "u'", "v'"],
+            '基础指标': ['CCT', 'Duv', 'x', 'y', "u'", "v'", 'pe', 'hab'],
             '其他指标': ['Rg', 'CRI2012', 'CQS Qa', 'CQS Qf', 'CQS Qg', 'CQS Qp', 
                        'MCRI', 'FCI', 'Sneutral', 'GAI', 'CDI76', 'GAI-CRI', 'Rd', 'CS', 'CLa']
         }
@@ -629,7 +630,7 @@ class MainWindow:
         # 按顺序添加选中的指标
         all_ordered_columns = ['还原分级', '喜好分级', '分辨分级',
                               'Ra', 'Rf', '(Ra+Rf)/2', 'MCPI', 'CDM', 'MCPIr', 'CDMr',
-                              'CCT', 'Duv', 'x', 'y', "u'", "v'", 
+                              'CCT', 'Duv', 'x', 'y', "u'", "v'", 'pe', 'hab', 
                               'Rg', 'CRI2012', 
                               'CQS Qa', 'CQS Qf', 'CQS Qg', 'CQS Qp',
                               'MCRI', 'FCI', 'Sneutral', 'GAI', 'CDI76', 'GAI-CRI',
@@ -649,6 +650,7 @@ class MainWindow:
             'Ra': 55, 'Rf': 55, '(Ra+Rf)/2': 75, 'MCPI': 60, 'CDM': 60,
             'MCPIr': 65, 'CDMr': 65,
             'CCT': 60, 'Duv': 65, 'x': 60, 'y': 60, "u'": 60, "v'": 60,
+            'pe': 60, 'hab': 70,
             'Rg': 55, 'CRI2012': 65,
             'CQS Qa': 65, 'CQS Qf': 65, 'CQS Qg': 65, 'CQS Qp': 65,
             'MCRI': 55, 'FCI': 55, 'Sneutral': 70, 'GAI': 55, 'CDI76': 65, 'GAI-CRI': 70,
@@ -680,8 +682,14 @@ class MainWindow:
                     if actual_col in row:
                         if col == 'CCT':
                             values.append(row[actual_col])
-                        elif col in ['Duv', 'x', 'y', "u'", "v'"]:
+                        elif col in ['Duv', 'x', 'y', "u'", "v'", 'pe']:
                             values.append(format_number(row[actual_col], 4))
+                        elif col == 'hab':
+                            hab_value = float(row[actual_col])
+                            if hab_value != hab_value:
+                                values.append('—')
+                            else:
+                                values.append(format_number(hab_value, 2))
                         elif col in ['Sneutral', 'CS', 'CLa']:
                             values.append(format_number(row[actual_col], 2))
                         else:
@@ -906,13 +914,15 @@ LQCV 光品质指标工具箱使用说明
 【计算指标】
 • 分级指标：还原分级、喜好分级、分辨分级（A/B/C/D）
 • 核心指标：Ra, Rf, (Ra+Rf)/2, MCPI, CDM, MCPIr, CDMr
-• 基础指标：CCT, Duv, x, y, u', v'
+• 基础指标：CCT, Duv, x, y, u', v', pe, hab
+  - pe：激发纯度，无彩色点为等能白 E，无量纲
+  - hab：光源色品相对 D65 的 CIELAB 色调角，单位度
 • 其他指标：Rg, CRI2012, CQS系列, MCRI, FCI, Sneutral, GAI, 
   CDI76, GAI-CRI, Rd, CS, CLa等
 
 【配置选项】
 • CMF选择：支持CIE 1931 2°和CIE 1964 10°标准观察者
-  - 仅影响结果表中的 x, y, u′, v′；Ra/Rf/MCPI 等核心指标按各自标准固定观察者
+  - 仅影响结果表中的 x, y, u′, v′, pe, hab；Ra/Rf/MCPI 等核心指标按各自标准固定观察者
 • 指标选择：可勾选需要计算和显示的指标
 • 配置保存：设置会自动保存，下次启动自动恢复
 
@@ -926,7 +936,7 @@ LQCV 光品质指标工具箱使用说明
     def _show_about(self):
         """显示关于"""
         about_text = """
-LQCV 光品质指标工具箱 v1.0.0
+LQCV 光品质指标工具箱 v1.1.0
 LQCV Lighting Quality Metrics Toolbox (LQMT)
 
 武汉大学 LQCV 课题组

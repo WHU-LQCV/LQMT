@@ -40,7 +40,7 @@ class AppConfig:
         'show_all_metrics': True,
         'show_grading': True,
         
-        # 色度坐标显示观察者（仅作用于结果表中 x, y, u', v' 四列）
+        # 色度坐标显示观察者（仅作用于结果表中 x, y, u', v', pe, hab）
         # Ra/Rf/Qa/CDI/Rd/Sneutral/MCPI/CDM 等所有指标按各自标准固定观察者计算，不受此项影响。
         'cmf': '1931_2',  # '1931_2'（CIE 1931 2°）或 '1964_10'（CIE 1964 10°）
     }

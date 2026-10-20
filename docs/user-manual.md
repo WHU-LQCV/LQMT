@@ -5,7 +5,7 @@
 - Windows：从 GitCode [Releases](https://gitcode.com/WHU-LQCV/LQMT/releases) 下载 `LQCV-LQMT-v1.0.0-windows-x64.zip`，解压后进入 `LQCV-LQMT`，双击 `LQCV-LQMT.exe`。
 - 源码：安装 `requirements.txt` 后执行 `python run_gui.py`。
 
-窗口标题为「LQCV 光品质指标工具箱 v1.0.0」。配置文件默认名为 `lqcv_lqmt_config.json`，与 exe 或工作目录同级。
+从源码启动时，窗口标题为「LQCV 光品质指标工具箱 v1.1.0」。已发布的 Windows 安装包仍是 v1.0.0。配置文件默认名为 `lqcv_lqmt_config.json`，与 exe 或工作目录同级。
 
 ## 输入 SPD
 
@@ -15,11 +15,15 @@
 
 ## 输出
 
-结果表包含 CCT、Duv、色度坐标、Ra、Rf、MCPI、CDM、MCPIr、CDMr、A/B/C/D 分级，以及其他可选指标（Rg、CQS、GAI、Rd 等）。可导出 Excel / CSV，并打开可视化窗口。
+结果表包含 CCT、Duv、色度坐标、激发纯度 pe、CIELAB 色调角 hab、Ra、Rf、MCPI、CDM、MCPIr、CDMr、A/B/C/D 分级，以及其他可选指标（Rg、CQS、GAI、Rd 等）。可导出 Excel / CSV，并打开可视化窗口。
 
-界面中的 CMF 选项只改变 x, y, u′, v′ 辅助列；Ra、Rf、MCPI 等核心指标按各自标准固定观察者。
+界面中的 CMF 选项改变 x、y、u′、v′、pe、hab。Ra、Rf、MCPI 等核心指标按各自标准固定观察者。
+
+pe 是激发纯度，无量纲。无彩色点固定为等能白 E，不随 CMF 选项改成 D65。紫色刺激的分母端点取紫边界，不取光谱轨迹。
+
+hab 是把光源光谱按 Y=100 换成 XYZ 后，以同一观察者、同一波长网格上的 D65 为参考白算出的 CIE 1976 a*b* 色调角，单位为度。它不是物体色的 CIELAB 色调。光源色品落在该 D65 上时，a* 与 b* 都是 0，hab 无定义，结果显示为「—」。L* 对所有按 Y=100 归一的光源都是 100，不携带明度信息。
 
 ## 对齐时请记录
 
-1. LQMT 版本 tag（例如 `v1.0.0`）和 LuxPy 1.12.5。
+1. LQMT 版本（源码 v1.1.0，或安装包 v1.0.0）和 LuxPy 1.12.5。
 2. SPD 波长范围与间隔。

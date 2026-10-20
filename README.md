@@ -2,9 +2,9 @@
 
 **LQCV Lighting Quality Metrics Toolbox (LQMT)**
 
-从光源光谱功率分布（SPD）计算颜色质量指标：Ra、Rf、MCPI、CDM、MCPIr、CDMr 及分级等。
+从光源光谱功率分布（SPD）计算颜色质量指标：Ra、Rf、MCPI、CDM、MCPIr、CDMr、激发纯度 pe、CIELAB 色调角 hab 及分级等。
 
-当前版本：**v1.0.0**  
+当前版本：**v1.1.0**（源码）。已发布的 Windows 安装包仍是 v1.0.0，不含 pe、hab。
 许可：[GPL-3.0-only](LICENSE)
 
 | | 地址 |
@@ -23,7 +23,7 @@
 
 macOS / Linux 请从源码运行。
 
-对齐数值时请写明：**LQMT v1.0.0**。
+对齐数值时请写明所用版本：源码 **LQMT v1.1.0**，或安装包 **LQMT v1.0.0**。
 
 ## 从源码运行
 
@@ -47,6 +47,8 @@ python run_gui.py
 | Qa / CQS | LuxPy CQS `v9.0`（LuxPy 1.12.5） |
 | Sneutral | CIE 1964 10° |
 | CCT | Ohno 2014 / Robertson 2023 |
+| pe | 激发纯度。等能白 E 为无彩色点，观察者随界面 CMF。单位为 1 |
+| hab | 光源 Y=100 的 XYZ 相对同一观察者、同一波长网格上 D65 的 CIE 1976 色调角，单位为度 |
 | LuxPy | 锁定 `1.12.5` |
 
 操作说明见 [docs/user-manual.md](docs/user-manual.md)。
@@ -62,7 +64,7 @@ python run_gui.py
 
 ## 引用本工具
 
-见 [CITATION.cff](CITATION.cff)。软件版本请使用 `1.0.0`。
+见 [CITATION.cff](CITATION.cff)。软件版本请使用 `1.1.0`。
 
 ## English
 

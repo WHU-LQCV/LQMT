@@ -37,7 +37,7 @@ class ResultExporter:
         # 定义列的顺序（使用简化名称）
         ordered_short_names = ['ID', '还原分级', '喜好分级', '分辨分级',
                               'Ra', 'Rf', '(Ra+Rf)/2', 'MCPI', 'CDM', 'MCPIr', 'CDMr',
-                              'CCT', 'Duv', 'x', 'y', "u'", "v'", 
+                              'CCT', 'Duv', 'x', 'y', "u'", "v'", 'pe', 'hab', 
                               'Rg', 'CRI2012', 
                               'CQS Qa', 'CQS Qf', 'CQS Qg', 'CQS Qp',
                               'MCRI', 'FCI', 'Sneutral', 'GAI', 'CDI76', 'GAI-CRI',
