@@ -9,6 +9,8 @@
 
 本版供测试，尚未发布到 GitCode Releases。已发布的 Windows 安装包仍是 v1.0.0，不含这两项。
 
+打包只生成一个 zip，不再为 Gitee 分卷。修复 SciPy 1.18 在冻结程序里缺少 `array_api_compat.numpy.fft` 导致 exe 无法启动的问题。
+
 ## 1.0.0 (2026-08-18)
 
 LQCV 光品质指标工具箱（LQMT）首次公开预发布。

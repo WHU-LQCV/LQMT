@@ -4,6 +4,8 @@
 import importlib.util
 from pathlib import Path
 
+from PyInstaller.utils.hooks import collect_submodules
+
 SPECDIR = Path(SPECPATH).resolve()
 ROOT = SPECDIR.parent
 
@@ -42,12 +44,18 @@ hiddenimports = [
     "luxpy.color",
     "luxpy.color.cam",
     "luxpy.spectrum",
-    "luxpy.cri",
+    "luxpy.color.cri",
     "numpy",
+    "numpy.fft",
     "pandas",
     "scipy",
     "scipy.interpolate",
     "scipy.optimize",
+    "scipy.special",
+    "scipy.linalg",
+    # SciPy 1.18 loads these with __import__, which PyInstaller does not trace.
+    "scipy._external.array_api_compat.numpy.fft",
+    "scipy._external.array_api_compat.numpy.linalg",
     "shapely",
     "shapely.geometry",
     "resampy",
@@ -82,6 +90,8 @@ hiddenimports = [
     "numba",
     "llvmlite",
 ]
+hiddenimports += collect_submodules("scipy._external.array_api_compat")
+hiddenimports += collect_submodules("scipy._lib")
 
 excludes = [
     "matplotlib.tests",
