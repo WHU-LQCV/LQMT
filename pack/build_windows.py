@@ -15,7 +15,7 @@ from pathlib import Path
 
 
 APP_NAME = "LQCV-LQMT"
-VERSION = "1.1.0"
+VERSION = "1.0.1"
 # Stay under Gitee's ~100 MB attachment cap (decimal or binary).
 PART_SIZE = 90 * 1024 * 1024
 

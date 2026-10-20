@@ -936,7 +936,7 @@ LQCV 光品质指标工具箱使用说明
     def _show_about(self):
         """显示关于"""
         about_text = """
-LQCV 光品质指标工具箱 v1.1.0
+LQCV 光品质指标工具箱 v1.0.1
 LQCV Lighting Quality Metrics Toolbox (LQMT)
 
 武汉大学 LQCV 课题组

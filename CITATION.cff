@@ -10,7 +10,7 @@ authors:
     affiliation: "Wuhan University"
 repository-code: "https://gitcode.com/WHU-LQCV/LQMT"
 license: GPL-3.0-only
-version: "1.1.0"
+version: "1.0.1"
 date-released: "2026-10-20"
 abstract: >-
   Toolbox for computing spectral colour-quality metrics (Ra, Rf, MCPI, CDM,

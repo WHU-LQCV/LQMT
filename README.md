@@ -4,7 +4,7 @@
 
 从光源光谱功率分布（SPD）计算颜色质量指标：Ra、Rf、MCPI、CDM、MCPIr、CDMr、激发纯度 pe、CIELAB 色调角 hab 及分级等。
 
-当前版本：**v1.1.0**（源码）。已发布的 Windows 安装包仍是 v1.0.0，不含 pe、hab。
+当前版本：**v1.0.1**（源码与测试包）。GitCode Releases 上的正式安装包仍是 v1.0.0，不含 pe、hab。测试通过后再发布。
 许可：[GPL-3.0-only](LICENSE)
 
 | | 地址 |
@@ -23,7 +23,7 @@
 
 macOS / Linux 请从源码运行。
 
-对齐数值时请写明所用版本：源码 **LQMT v1.1.0**，或安装包 **LQMT v1.0.0**。
+对齐数值时请写明所用版本：测试包 **LQMT v1.0.1**，或已发布安装包 **LQMT v1.0.0**。
 
 ## 从源码运行
 
@@ -64,7 +64,7 @@ python run_gui.py
 
 ## 引用本工具
 
-见 [CITATION.cff](CITATION.cff)。软件版本请使用 `1.1.0`。
+见 [CITATION.cff](CITATION.cff)。软件版本请使用 `1.0.1`。
 
 ## English
 
