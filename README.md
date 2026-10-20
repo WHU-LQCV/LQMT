@@ -4,7 +4,7 @@
 
 从光源光谱功率分布（SPD）计算颜色质量指标：Ra、Rf、MCPI、CDM、MCPIr、CDMr、激发纯度 pe、CIELAB 色调角 hab 及分级等。
 
-当前版本：**v1.0.1**（源码与测试包）。GitCode Releases 上的正式安装包仍是 v1.0.0，不含 pe、hab。测试通过后再发布。
+当前版本：**v1.0.1**（源码与测试包）。GitCode Releases 上的正式安装包仍是 v1.0.0，不含 p_e、h_ab。测试通过后再发布。
 许可：[GPL-3.0-only](LICENSE)
 
 | | 地址 |
@@ -47,8 +47,8 @@ python run_gui.py
 | Qa / CQS | LuxPy CQS `v9.0`（LuxPy 1.12.5） |
 | Sneutral | CIE 1964 10° |
 | CCT | Ohno 2014 / Robertson 2023 |
-| pe | 激发纯度。等能白 E 为无彩色点，观察者随界面 CMF。单位为 1 |
-| hab | 光源 Y=100 的 XYZ 相对同一观察者、同一波长网格上 D65 的 CIE 1976 色调角，单位为度 |
+| p_e | 激发纯度。等能白 E 为无彩色点，观察者随界面 CMF。单位为 1 |
+| h_ab | 光源 Y=100 的 XYZ 相对同一观察者、同一波长网格上 D65 的 CIE 1976 色调角，单位为度 |
 | LuxPy | 锁定 `1.12.5` |
 
 操作说明见 [docs/user-manual.md](docs/user-manual.md)。

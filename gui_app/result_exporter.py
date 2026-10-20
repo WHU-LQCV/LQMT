@@ -9,6 +9,11 @@ import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils.dataframe import dataframe_to_rows
 
+try:
+    from .utils import rename_metric_columns
+except ImportError:
+    from gui_app.utils import rename_metric_columns
+
 
 class ResultExporter:
     """结果导出器"""
@@ -81,15 +86,16 @@ class ResultExporter:
             file_path: str - 输出文件路径
             selected_metrics: dict - 选中的指标字典
         """
-        # 重新排序列并筛选
+        # 重新排序列并筛选。摘要仍用内部列名，写出的表头换成下划线名称。
         results_df = self._reorder_columns(results_df, selected_metrics)
+        display_df = rename_metric_columns(results_df)
         
         with pd.ExcelWriter(file_path, engine='openpyxl') as writer:
             # Sheet 1: 摘要信息
             self._write_summary_sheet(writer, results_df)
             
             # Sheet 2: 完整指标数据
-            self._write_metrics_sheet(writer, results_df, apply_formatting=True)
+            self._write_metrics_sheet(writer, display_df, apply_formatting=True)
             
             # Sheet 3: SPD原始数据（如果提供）
             if spd_array is not None and sample_names is not None:
@@ -104,6 +110,7 @@ class ResultExporter:
                     (results_df['分辨分级'] == 'A')
                 ]
                 if len(aaa_df) > 0:
+                    aaa_df = rename_metric_columns(aaa_df)
                     aaa_df.to_excel(writer, sheet_name='AAA级光源', index=False)
                     self._apply_sheet_formatting(writer.sheets['AAA级光源'])
     
@@ -119,9 +126,9 @@ class ResultExporter:
                 ('CCT范围', f"{results_df['CCT'].min()}K - {results_df['CCT'].max()}K"),
             ])
         if 'Ra (CIE 13.3-1995 Ra)' in results_df.columns:
-            summary_rows.append(('平均Ra', round(results_df['Ra (CIE 13.3-1995 Ra)'].mean(), 1)))
+            summary_rows.append(('平均 R_a', round(results_df['Ra (CIE 13.3-1995 Ra)'].mean(), 1)))
         if 'Rf (CIE 224-2017 Rf / IES TM 30-18 Rf)' in results_df.columns:
-            summary_rows.append(('平均Rf', round(results_df['Rf (CIE 224-2017 Rf / IES TM 30-18 Rf)'].mean(), 1)))
+            summary_rows.append(('平均 R_f', round(results_df['Rf (CIE 224-2017 Rf / IES TM 30-18 Rf)'].mean(), 1)))
 
         grade_cols = ['还原分级', '喜好分级', '分辨分级']
         if all(col in results_df.columns for col in grade_cols):
@@ -332,7 +339,7 @@ class ResultExporter:
             selected_metrics: dict - 选中的指标字典
         """
         # 重新排序列并筛选
-        results_df = self._reorder_columns(results_df, selected_metrics)
+        results_df = rename_metric_columns(self._reorder_columns(results_df, selected_metrics))
         # 使用utf-8-sig编码，确保Excel正确显示中文
         results_df.to_csv(file_path, index=False, encoding='utf-8-sig')
     

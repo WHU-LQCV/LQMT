@@ -16,14 +16,14 @@ try:
     from .core_engine import MetricsCalculator
     from .data_parser import SPDParser
     from .config import AppConfig
-    from .utils import ProgressTracker, ThreadSafeTask, format_number, get_grade_color, create_example_spd_text
+    from .utils import ProgressTracker, ThreadSafeTask, format_number, display_metric_name, get_grade_color, create_example_spd_text
     from . import APP_NAME_ZH, __version__
 except ImportError:
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from gui_app.core_engine import MetricsCalculator
     from gui_app.data_parser import SPDParser
     from gui_app.config import AppConfig
-    from gui_app.utils import ProgressTracker, ThreadSafeTask, format_number, get_grade_color, create_example_spd_text
+    from gui_app.utils import ProgressTracker, ThreadSafeTask, format_number, display_metric_name, get_grade_color, create_example_spd_text
     from gui_app import APP_NAME_ZH, __version__
 
 
@@ -290,7 +290,7 @@ class MainWindow:
         }
         
         for col in self.result_columns:
-            self.result_tree.heading(col, text=col, command=lambda c=col: self._sort_by_column(c), anchor='center')
+            self.result_tree.heading(col, text=display_metric_name(col), command=lambda c=col: self._sort_by_column(c), anchor='center')
             width = column_widths.get(col, 80)
             # 设置列宽度、最小宽度，居中对齐，并允许拉伸
             self.result_tree.column(col, width=width, minwidth=width, stretch=True, anchor='center')
@@ -313,7 +313,7 @@ class MainWindow:
     def _create_config_panel(self):
         """创建配置面板"""
         # 色度坐标显示观察者选择（顶部）
-        cmf_frame = ttk.LabelFrame(self.config_frame, text="色度坐标显示观察者（x, y, u\u2019, v\u2019, pe, hab）", padding="10")
+        cmf_frame = ttk.LabelFrame(self.config_frame, text="色度坐标显示观察者（x, y, u\u2019, v\u2019, p_e, h_ab）", padding="10")
         cmf_frame.pack(fill=tk.X, padx=5, pady=5)
         
         self.cmf_var = tk.StringVar(value=self.config.get('cmf', '1931_2'))
@@ -324,7 +324,7 @@ class MainWindow:
 
         cmf_desc = ttk.Label(
             cmf_frame,
-            text="仅用于结果表中的色度列（x, y, u\u2019, v\u2019, pe, hab）。\nRa/Rf/Qa/CDI/Rd/Sneutral/MCPI/CDM 等指标\n按各自标准固定观察者计算，不受此选项影响。",
+            text="仅用于结果表中的色度列（x, y, u\u2019, v\u2019, p_e, h_ab）。\nR_a/R_f/Q_a/CDI/R_d/Sneutral/MCPI/CDM 等指标\n按各自标准固定观察者计算，不受此选项影响。",
             justify=tk.LEFT,
             foreground='gray'
         )
@@ -409,7 +409,7 @@ class MainWindow:
                 is_selected = saved_metrics.get(metric, True)
                 var = tk.BooleanVar(value=is_selected)
                 self.metric_vars[metric] = var
-                cb = ttk.Checkbutton(scrollable_frame, text=metric, variable=var)
+                cb = ttk.Checkbutton(scrollable_frame, text=display_metric_name(metric), variable=var)
                 cb.pack(anchor=tk.W, padx=20, pady=2)
                 cb.bind("<MouseWheel>", _on_mousewheel)
         
@@ -658,7 +658,7 @@ class MainWindow:
         }
         
         for col in display_columns:
-            self.result_tree.heading(col, text=col, command=lambda c=col: self._sort_by_column(c), anchor='center')
+            self.result_tree.heading(col, text=display_metric_name(col), command=lambda c=col: self._sort_by_column(c), anchor='center')
             width = column_widths.get(col, 70)
             self.result_tree.column(col, width=width, minwidth=width, stretch=True, anchor='center')
         
@@ -728,7 +728,7 @@ class MainWindow:
         
         for col in columns:
             # 计算标题宽度（增加边距确保完整显示）
-            header_width = heading_font.measure(col) + 35
+            header_width = heading_font.measure(display_metric_name(col)) + 35
             optimal_width = max(header_width, 60)  # 最小60像素
             
             # 设置列宽和居中对齐
@@ -745,7 +745,7 @@ class MainWindow:
         
         for col in columns:
             # 计算标题宽度（增加更多边距确保完整显示）
-            header_width = heading_font.measure(col) + 35
+            header_width = heading_font.measure(display_metric_name(col)) + 35
             
             # 计算内容最大宽度
             max_content_width = 0
@@ -913,16 +913,16 @@ LQCV 光品质指标工具箱使用说明
 
 【计算指标】
 • 分级指标：还原分级、喜好分级、分辨分级（A/B/C/D）
-• 核心指标：Ra, Rf, (Ra+Rf)/2, MCPI, CDM, MCPIr, CDMr
-• 基础指标：CCT, Duv, x, y, u', v', pe, hab
-  - pe：激发纯度，无彩色点为等能白 E，无量纲
-  - hab：光源色品相对 D65 的 CIELAB 色调角，单位度
+• 核心指标：R_a, R_f, (R_a+R_f)/2, MCPI, CDM, MCPI_r, CDM_r
+• 基础指标：CCT, D_uv, x, y, u', v', p_e, h_ab
+  - p_e：激发纯度，无彩色点为等能白 E，无量纲
+  - h_ab：光源色品相对 D65 的 CIELAB 色调角，单位度
 • 其他指标：Rg, CRI2012, CQS系列, MCRI, FCI, Sneutral, GAI, 
-  CDI76, GAI-CRI, Rd, CS, CLa等
+  CDI76, GAI-CRI, R_d, CS, CL_a等
 
 【配置选项】
 • CMF选择：支持CIE 1931 2°和CIE 1964 10°标准观察者
-  - 仅影响结果表中的 x, y, u′, v′, pe, hab；Ra/Rf/MCPI 等核心指标按各自标准固定观察者
+  - 仅影响结果表中的 x, y, u′, v′, p_e, h_ab；R_a/R_f/MCPI 等核心指标按各自标准固定观察者
 • 指标选择：可勾选需要计算和显示的指标
 • 配置保存：设置会自动保存，下次启动自动恢复
 
